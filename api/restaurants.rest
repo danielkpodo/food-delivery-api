@@ -1,0 +1,2 @@
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/hello
+Content-Type: application/json
