@@ -1,5 +1,5 @@
 const { StatusCodes, ReasonPhrases } = require('http-status-codes');
-const { sequelize, Sequelize, Restaurant } = require('../db/models');
+const { sequelize, Sequelize, Restaurant, User } = require('../db/models');
 
 const { handleJoiError } = require('../utils/server-response');
 const { validateRestaurant } = require('../validators/restaurant');
@@ -78,6 +78,33 @@ exports.updateRestaurant = async (req, res) => {
       statusCode: StatusCodes.OK,
       statusMessage: ReasonPhrases.OK,
       data: { ...result.toJSON() },
+    });
+  });
+};
+
+exports.getRestaurant = async (req, res) => {
+  const { id } = req.params;
+
+  await sequelize.transaction(async (t) => {
+    const restaurant = await Restaurant.findOne({
+      where: { id },
+      transaction: t,
+      include: [
+        {
+          model: User,
+          as: 'owner',
+          attributes: ['id', 'firstName', 'lastName'],
+        },
+      ],
+    });
+    if (!restaurant) {
+      throw new NotFoundError(`Restaurant ID -> ${id} does not exist`);
+    }
+
+    res.status(StatusCodes.OK).json({
+      statusCode: StatusCodes.OK,
+      statusMessage: ReasonPhrases.OK,
+      data: restaurant,
     });
   });
 };

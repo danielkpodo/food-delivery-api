@@ -94,6 +94,27 @@ exports.updateMenu = async (req, res) => {
   });
 };
 
+exports.getMenu = async (req, res) => {
+  const { id } = req.params;
+
+  await sequelize.transaction(async (t) => {
+    const menu = await Menu.findOne({
+      where: { id },
+      transaction: t,
+      include: [
+        { model: Restaurant, as: 'restaurant', attributes: ['id', 'name'] },
+      ],
+    });
+    if (!menu) throw new NotFoundError(`Menu ID -> ${id} does not exist`);
+
+    res.status(StatusCodes.OK).json({
+      statusCode: StatusCodes.OK,
+      statusMessage: ReasonPhrases.OK,
+      data: menu,
+    });
+  });
+};
+
 exports.deleteMenu = async (req, res) => {
   const { id } = req.params;
   const menu = await Menu.findOne({ where: { id } });

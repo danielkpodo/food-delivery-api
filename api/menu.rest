@@ -29,6 +29,11 @@ Authorization: Bearer {{$dotenv TOKEN}}
       "price": 90.00
 }
 
+### GET A SI|NGLE MENU DETAILS  BY ID
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu/1
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
 
 ### DELETE A MENU BY ID -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
 DELETE http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu/2

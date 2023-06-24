@@ -27,6 +27,11 @@ Authorization: Bearer {{$dotenv TOKEN}}
   "address": "Adenta, Asylum Down"
 }
 
+### GET  A RESTAURANT BY ID
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/2
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
 
 ### DELETE A RESTAURANT BY ID -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
 DELETE http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/1

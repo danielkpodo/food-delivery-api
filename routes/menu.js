@@ -5,6 +5,7 @@ const {
   deleteMenu,
   getAllMenu,
   updateMenu,
+  getMenu,
 } = require('../controllers/menuController');
 const { authenticateUser } = require('../middlewares/authenticate-user');
 const router = Router();
@@ -12,7 +13,7 @@ const router = Router();
 router.route('/').get(getAllMenu).post(authenticateUser, createMenu);
 router
   .route('/:id')
-  // .get(authenticateUser, updateRestaurant)
+  .get(authenticateUser, getMenu)
   .delete(authenticateUser, deleteMenu)
   .patch(authenticateUser, updateMenu);
 
