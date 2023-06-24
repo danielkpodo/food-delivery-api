@@ -4,7 +4,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
       User.hasMany(models.Order, {
         foreignKey: 'userId',
         sourceKey: 'id',
@@ -16,10 +15,26 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+          msg: 'Email is already taken',
+        },
+      },
       password: DataTypes.STRING,
-      phone: DataTypes.STRING,
-      role: DataTypes.ENUM,
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+          msg: 'Phone number already exists',
+        },
+      },
+      role: {
+        type: DataTypes.ENUM,
+        defaultValue: 'SUBSCRIBER',
+        values: ['SUBSCRIBER', 'ADMIN'],
+      },
       address: DataTypes.STRING,
     },
     {

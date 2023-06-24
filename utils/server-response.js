@@ -8,33 +8,6 @@ const handleJoiError = (res, error) => {
   });
 };
 
-const handleSuccPostRequest = (res, msg) => {
-  return res.status(StatusCodes.CREATED).json({
-    statusCode: StatusCodes.CREATED,
-    statusMessage: ReasonPhrases.CREATED,
-    message: msg,
-  });
-};
-
-const handleSuccResponse = (res, msg) => {
-  return res.status(StatusCodes.OK).json({
-    statusCode: StatusCodes.OK,
-    statusMessage: ReasonPhrases.OK,
-    message: msg,
-  });
-};
-
-const handleSuccDataRequest = (res, data) => {
-  return res.status(StatusCodes.OK).json({
-    statusCode: StatusCodes.OK,
-    statusMessage: ReasonPhrases.OK,
-    data,
-  });
-};
-
 module.exports = {
   handleJoiError,
-  handleSuccPostRequest,
-  handleSuccResponse,
-  handleSuccDataRequest,
 };

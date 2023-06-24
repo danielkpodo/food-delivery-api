@@ -8,6 +8,7 @@ const { BASE_URL } = process.env;
  * Import all application routes here
  */
 const restaurantRoutes = require('./routes/restaurant');
+const userRoutes = require('./routes/user');
 
 module.exports = app => {
   if (process.env.NODE_ENV === DEVELOPMENT) {
@@ -22,7 +23,7 @@ module.exports = app => {
    * Serve application routes as middlewares
    */
   app.use(`/${BASE_URL}/restaurants`, restaurantRoutes);
-
+  app.use(`/${BASE_URL}/users`, userRoutes);
   /**
    * Error Middlewares
    */

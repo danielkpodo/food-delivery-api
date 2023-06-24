@@ -27,7 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.INTEGER,
       restaurantId: DataTypes.INTEGER,
       orderTotal: DataTypes.DOUBLE,
-      deliveryStatus: DataTypes.ENUM,
+      deliveryStatus: {
+        type: DataTypes.ENUM,
+        defaultValue: 'PENDING',
+        values: ['PENDING', 'DELIVERED', 'CANCELLED'],
+      },
     },
     {
       sequelize,

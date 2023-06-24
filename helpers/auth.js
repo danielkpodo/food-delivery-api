@@ -2,15 +2,12 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { UnauthenticatedError } = require('../errors');
-const { User } = require('../db/models');
 
-const createAuthToken = user => {
+const createAuthToken = (user) => {
   const token = jwt.sign(
     {
       id: user.id,
-      isAdmin: user.isAdmin,
-      role: user.position.role,
-      isVerified: user.isVerified,
+      role: user.role,
     },
     process.env.JWT_SECRET,
     {
@@ -37,7 +34,7 @@ const comparePassword = async (password, hash) => {
   return isMatch;
 };
 
-const encryptPassword = async password => {
+const encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   return hashedPassword;

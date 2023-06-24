@@ -1,0 +1,12 @@
+POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/users
+Content-Type: application/json
+
+{
+    "firstName": "Daniel",
+    "lastName": "Narh",
+    "email": "naphthaneman+23@gmail.com",
+    "phone": "+233542433263",
+    "password": "12345678",
+    "confirmPassword": "12345678",
+    "address": "Lake Bosomtwe Junction"
+}

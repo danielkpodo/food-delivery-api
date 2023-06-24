@@ -1,3 +1,5 @@
+const validator = require('validator');
+
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -16,4 +18,8 @@ const getPagingData = (data, page, limit) => {
   return { totalItems, totalPages, currentPage, items };
 };
 
-module.exports = { getPagination, getPagingData, capitalize };
+const isMobilePhone = phoneNumber => {
+  return validator.isMobilePhone(phoneNumber);
+};
+
+module.exports = { getPagination, getPagingData, capitalize, isMobilePhone };
