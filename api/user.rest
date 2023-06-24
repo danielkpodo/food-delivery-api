@@ -4,12 +4,12 @@ Content-Type: application/json
 {
     "firstName": "Daniel",
     "lastName": "Narh",
-    "email": "kpododanielnarh@gmail.com",
-    "phone": "+233542433264",
+    "email": "naphthanewman@gmail.com",
+    "phone": "+233542437264",
     "password": "12345678",
     "confirmPassword": "12345678",
-    "address": "Lake Bosomtwe Junction",
-    "role": "ADMIN"
+    "address": "Lake Bosomtwe Junction"
+
 }
 
 ###

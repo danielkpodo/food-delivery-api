@@ -5,15 +5,9 @@ module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
       Order.belongsTo(models.User, {
-        foreignKey: 'userId',
+        foreignKey: 'ownerId',
         targetKey: 'id',
-        as: 'user',
-      });
-
-      Order.belongsTo(models.Restaurant, {
-        foreignKey: 'restaurantId',
-        targetKey: 'id',
-        as: 'restaurant',
+        as: 'owner',
       });
 
       Order.hasMany(models.Deliverable, {
@@ -24,9 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Order.init(
     {
-      userId: DataTypes.INTEGER,
-      restaurantId: DataTypes.INTEGER,
-      orderTotal: DataTypes.DOUBLE,
+      ownerId: DataTypes.INTEGER,
       deliveryStatus: {
         type: DataTypes.ENUM,
         defaultValue: 'PENDING',

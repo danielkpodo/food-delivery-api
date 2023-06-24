@@ -11,9 +11,9 @@ Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-  "name": "Sam Kafe",
-  "phone": "+233542433269",
-  "address": "Adenta"
+  "name": "Uber Eats",
+  "phone": "+233542433868",
+  "address": "Accra"
 }
 
 ### UPDATE A RESTAURANT DETAILS EITHER -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION

@@ -1,0 +1,45 @@
+# GET ALL ORDERS
+# Pass query param search -> searches and filters records(search by restaurant name or menu name)
+# Pass Query Param  restaurantId to fetch all menus of a particular restaurant
+# Pass pagination query params
+    #1. page -> specifies the page number
+    #2 size -> specifies the total items per page
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/orders?search=&page=&size=
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### CREATE A NEW ORDER
+POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/orders
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+
+    "items": [
+        {
+            "quantity": 2,
+            "menuId": 2
+        },
+         {
+            "quantity": 3,
+            "menuId": 3
+        }
+    ]
+}
+
+
+### GET A SINGLE ORDER DETAILS  BY ID
+GET  http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/orders/3
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+### UPDATE AN ORDER STATUS
+# POSSIBLE VALUES -> ['PENDING', 'DELIVERED', 'CANCELLED']
+# CAN ONLY BY DONE BY ADMIN
+PATCH http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/orders/3
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+     "deliveryStatus": "DELIVERED"
+}

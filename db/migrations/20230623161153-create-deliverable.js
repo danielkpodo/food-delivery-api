@@ -19,17 +19,15 @@ module.exports = {
           key: 'id',
         },
       },
-      itemName: {
-        type: Sequelize.STRING,
-      },
       quantity: {
         type: Sequelize.INTEGER,
       },
-      price: {
-        type: Sequelize.DOUBLE,
-      },
-      totalAmt: {
-        type: Sequelize.DOUBLE,
+      menuId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Menus',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,

@@ -10,6 +10,7 @@ const { BASE_URL } = process.env;
 const restaurantRoutes = require('./routes/restaurant');
 const userRoutes = require('./routes/user');
 const menuRoutes = require('./routes/menu');
+const orderRoutes = require('./routes/order');
 
 module.exports = (app) => {
   if (process.env.NODE_ENV === DEVELOPMENT) {
@@ -26,7 +27,7 @@ module.exports = (app) => {
   app.use(`/${BASE_URL}/restaurants`, restaurantRoutes);
   app.use(`/${BASE_URL}/users`, userRoutes);
   app.use(`/${BASE_URL}/menu`, menuRoutes);
-
+  app.use(`/${BASE_URL}/orders`, orderRoutes);
   /**
    * Error Middlewares
    */

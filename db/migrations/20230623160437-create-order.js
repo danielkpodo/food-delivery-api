@@ -13,22 +13,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      ownerId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id',
         },
-      },
-      restaurantId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Restaurants',
-          key: 'id',
-        },
-      },
-      orderTotal: {
-        type: Sequelize.DOUBLE,
       },
       deliveryStatus: {
         type: Sequelize.ENUM,

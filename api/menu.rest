@@ -6,6 +6,7 @@
     #2 size -> specifies the total items per page
 GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu?search=&page=&size=&restaurantId=2
 Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
 
 ### CREATE A NEW MENU
 POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu
@@ -13,9 +14,9 @@ Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-     "restaurantId": 2,
-      "itemName": "Turkey Fried Rice",
-      "price": 90.00
+     "restaurantId": 1,
+      "itemName": "Banku with Okro",
+      "price": 120.00
 }
 
 ### UPDATE A MENU DETAILS EITHER -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION

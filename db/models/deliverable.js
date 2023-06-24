@@ -14,15 +14,19 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'id',
         as: 'order',
       });
+
+      Deliverable.belongsTo(models.Menu, {
+        foreignKey: 'menuId',
+        targetKey: 'id',
+        as: 'menu',
+      });
     }
   }
   Deliverable.init(
     {
       orderId: DataTypes.INTEGER,
-      itemName: DataTypes.STRING,
+      menuId: DataTypes.INTEGER,
       quantity: DataTypes.INTEGER,
-      price: DataTypes.DOUBLE,
-      totalAmt: DataTypes.DOUBLE,
     },
     {
       sequelize,

@@ -10,7 +10,10 @@ const {
 const { authenticateUser } = require('../middlewares/authenticate-user');
 const router = Router();
 
-router.route('/').get(getAllMenu).post(authenticateUser, createMenu);
+router
+  .route('/')
+  .get(authenticateUser, getAllMenu)
+  .post(authenticateUser, createMenu);
 router
   .route('/:id')
   .get(authenticateUser, getMenu)
