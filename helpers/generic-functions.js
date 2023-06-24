@@ -18,7 +18,7 @@ const getPagingData = (data, page, limit) => {
   return { totalItems, totalPages, currentPage, items };
 };
 
-const isMobilePhone = phoneNumber => {
+const isMobilePhone = (phoneNumber) => {
   return validator.isMobilePhone(phoneNumber);
 };
 

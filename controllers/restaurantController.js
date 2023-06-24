@@ -5,9 +5,39 @@ const { handleJoiError } = require('../utils/server-response');
 const { validateRestaurant } = require('../validators/restaurant');
 const { NotFoundError } = require('../errors');
 const checkPermission = require('../utils/checkPermission');
+const {
+  getPagination,
+  getPagingData,
+} = require('../helpers/generic-functions');
+const { fullTextSearch } = require('../helpers/fulltext-search');
 
 exports.getAllRestaurants = async (req, res) => {
-  res.send('All Restaurants');
+  const { page, size } = req.query;
+  const { Op } = Sequelize;
+  const { limit, offset } = getPagination(page, size);
+
+  /**  models specifies the model to search on */
+  const models = `"Restaurant"."_search"`;
+  const fullSearch = fullTextSearch(req, models);
+
+  await sequelize.transaction(async (t) => {
+    const users = await Restaurant.findAndCountAll({
+      where: {
+        [Op.and]: [...fullSearch],
+      },
+      order: [['id', 'DESC']],
+      transaction: t,
+      limit,
+      offset,
+    });
+
+    const results = getPagingData(users, page, limit);
+    res.status(200).json({
+      statusCode: StatusCodes.OK,
+      statusMessage: ReasonPhrases.OK,
+      data: results,
+    });
+  });
 };
 
 exports.createRestaurant = async (req, res) => {
@@ -30,7 +60,6 @@ exports.createRestaurant = async (req, res) => {
 };
 
 exports.updateRestaurant = async (req, res) => {
-  // admins can update record and owners
   const { id } = req.params;
   const restaurant = await Restaurant.findOne({ where: { id } });
   await sequelize.transaction(async (t) => {
@@ -54,7 +83,6 @@ exports.updateRestaurant = async (req, res) => {
 };
 
 exports.deleteRestaurant = async (req, res) => {
-  console.log(req.user);
   const { id } = req.params;
   const restaurant = await Restaurant.findOne({ where: { id } });
   await sequelize.transaction(async (t) => {

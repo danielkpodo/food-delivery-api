@@ -1,4 +1,8 @@
-GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants
+# Pass query param search -> searches and filters records
+# Pass pagination query params
+    #1. page -> specifies the page number
+    #2 size -> specifies the total items per page
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants?search=&page=&size=
 Content-Type: application/json
 
 ### CREATE A NEW RESTAURANT
@@ -7,9 +11,9 @@ Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-  "name": "Sam Loco Ent.",
-  "phone": "+233542433262",
-  "address": "Adenta, Asylum Down"
+  "name": "Beauty Palour",
+  "phone": "+233542433263",
+  "address": "China mall, kasoa"
 }
 
 ### UPDATE A RESTAURANT DETAILS EITHER -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
