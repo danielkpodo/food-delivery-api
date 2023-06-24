@@ -11,9 +11,9 @@ Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}
 
 {
-  "name": "Beauty Palour",
-  "phone": "+233542433263",
-  "address": "China mall, kasoa"
+  "name": "Sam Kafe",
+  "phone": "+233542433269",
+  "address": "Adenta"
 }
 
 ### UPDATE A RESTAURANT DETAILS EITHER -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
@@ -29,6 +29,6 @@ Authorization: Bearer {{$dotenv TOKEN}}
 
 
 ### DELETE A RESTAURANT BY ID -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
-DELETE http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/10
+DELETE http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants/1
 Content-Type: application/json
 Authorization: Bearer {{$dotenv TOKEN}}

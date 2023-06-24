@@ -2,6 +2,7 @@ const vectorName = '_search';
 
 const searchObjects = {
   Restaurants: ['name', 'address', 'phone'],
+  Menus: ['"itemName"'],
 };
 
 module.exports = {

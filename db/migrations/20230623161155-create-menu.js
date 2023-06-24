@@ -25,6 +25,13 @@ module.exports = {
       price: {
         type: Sequelize.DOUBLE,
       },
+      ownerId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -1,0 +1,36 @@
+# GET ALL MENUS
+# Pass query param search -> searches and filters records(search by restaurant name or menu name)
+# Pass Query Param  restaurantId to fetch all menus of a particular restaurant
+# Pass pagination query params
+    #1. page -> specifies the page number
+    #2 size -> specifies the total items per page
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu?search=&page=&size=&restaurantId=2
+Content-Type: application/json
+
+### CREATE A NEW MENU
+POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+     "restaurantId": 2,
+      "itemName": "Turkey Fried Rice",
+      "price": 90.00
+}
+
+### UPDATE A MENU DETAILS EITHER -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
+PATCH http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu/1
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}
+
+{
+     "restaurantId": 1,
+      "itemName": "Oyiwa",
+      "price": 90.00
+}
+
+
+### DELETE A MENU BY ID -> ONLY USER WHO CREATED RECORD OR SYSTEM ADMIN CAN PERFORM THIS OPERATION
+DELETE http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/menu/2
+Content-Type: application/json
+Authorization: Bearer {{$dotenv TOKEN}}

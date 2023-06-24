@@ -7,7 +7,6 @@ const {
   deleteRestaurant,
 } = require('../controllers/restaurantController');
 const { authenticateUser } = require('../middlewares/authenticate-user');
-// const { authorizePermissions } = require('../middlewares/authorize');
 const router = Router();
 
 router
@@ -16,7 +15,7 @@ router
   .post(authenticateUser, createRestaurant);
 router
   .route('/:id')
-  .get(authenticateUser, updateRestaurant)
+  // .get(authenticateUser, updateRestaurant)
   .delete(authenticateUser, deleteRestaurant)
   .patch(authenticateUser, updateRestaurant);
 

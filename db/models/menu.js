@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'id',
         as: 'restaurant',
       });
+
+      Menu.belongsTo(models.User, {
+        foreignKey: 'ownerId',
+        targetKey: 'id',
+        as: 'owner',
+      });
     }
   }
   Menu.init(
@@ -16,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       restaurantId: DataTypes.INTEGER,
       itemName: DataTypes.STRING,
       price: DataTypes.DOUBLE,
+      ownerId: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
