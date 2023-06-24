@@ -1,12 +1,5 @@
 const { StatusCodes, ReasonPhrases } = require('http-status-codes');
-const {
-  sequelize,
-  Sequelize,
-  Menu,
-  Order,
-  Deliverable,
-  User,
-} = require('../db/models');
+const { sequelize, Menu, Order, Deliverable, User } = require('../db/models');
 
 const { handleJoiError } = require('../utils/server-response');
 const { validateOrder, validateOrderStatus } = require('../validators/order');
@@ -16,22 +9,14 @@ const {
   getPagination,
   getPagingData,
 } = require('../helpers/generic-functions');
-const { fullTextSearch } = require('../helpers/fulltext-search');
 
 exports.getAllOrder = async (req, res) => {
   const { page, size } = req.query;
-  const { Op } = Sequelize;
-  const { limit, offset } = getPagination(page, size);
 
-  /**  models specifies the model to search on */
-  const models = `"Menu"."_search", "restaurant"."_search"`;
-  const fullSearch = fullTextSearch(req, models);
+  const { limit, offset } = getPagination(page, size);
 
   await sequelize.transaction(async (t) => {
     const users = await Order.findAndCountAll({
-      where: {
-        [Op.and]: [...fullSearch],
-      },
       include: [
         {
           model: User,

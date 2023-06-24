@@ -5,6 +5,7 @@
 GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants?search=&page=&size=
 Content-Type: application/json
 
+
 ### CREATE A NEW RESTAURANT
 POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/restaurants
 Content-Type: application/json
