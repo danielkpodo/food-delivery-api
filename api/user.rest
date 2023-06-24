@@ -4,9 +4,24 @@ Content-Type: application/json
 {
     "firstName": "Daniel",
     "lastName": "Narh",
-    "email": "naphthaneman+23@gmail.com",
-    "phone": "+233542433263",
+    "email": "kpododanielnarh@gmail.com",
+    "phone": "+233542433264",
     "password": "12345678",
     "confirmPassword": "12345678",
-    "address": "Lake Bosomtwe Junction"
+    "address": "Lake Bosomtwe Junction",
+    "role": "ADMIN"
 }
+
+###
+POST http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/users/login
+Content-Type: application/json
+
+{
+    "email": "naphthanewman@gmail.com",
+    "password": "12345678"
+}
+
+
+###
+GET http://localhost:{{$dotenv PORT}}/{{$dotenv BASE_URL}}/users/logout
+Content-Type: application/json

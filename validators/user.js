@@ -36,7 +36,16 @@ const verifyPasswords = (password, confirmPassword) => {
   return password === confirmPassword;
 };
 
+const validateLogin = (data) => {
+  const schema = Joi.object({
+    email: Joi.string().email().message('Invalid email format').required(),
+    password: Joi.string().required().label('Password'),
+  });
+  return schema.validate(data);
+};
+
 module.exports = {
   validateSignUp,
   verifyPasswords,
+  validateLogin,
 };

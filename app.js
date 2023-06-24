@@ -22,7 +22,7 @@ app.use(hpp());
 
 app.use(express.json());
 // sets cookie in the browser
-app.use(cookieParser(process.env.JWT_sECRET));
+app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.urlencoded({ extended: true }));
 
 /** serve application routes */

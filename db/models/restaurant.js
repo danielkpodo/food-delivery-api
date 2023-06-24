@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
         as: 'orders',
       });
 
+      Restaurant.belongsTo(models.User, {
+        foreignKey: 'ownerId',
+        targetKey: 'id',
+        as: 'owner',
+      });
+
       Restaurant.hasMany(models.Menu, {
         foreignKey: 'restaurantId',
         sourceKey: 'id',
@@ -19,9 +25,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   Restaurant.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+          msg: 'Restaurant name already exists',
+        },
+      },
       address: DataTypes.STRING,
-      phone: DataTypes.STRING,
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+          msg: 'There is an existing restaurant with this phone number',
+        },
+      },
+      ownerId: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,

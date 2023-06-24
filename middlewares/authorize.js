@@ -1,12 +1,12 @@
 const { UnauthorizedError } = require('../errors');
 
-const authorizePermissions = (...roles) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      throw new UnauthorizedError('Unauthorized to access this route');
-    }
-    next();
-  };
+const authorizePermissions = (req, res, next) => {
+  if (req.user.role !== 'ADMIN') {
+    throw new UnauthorizedError(
+      'You do not have the right access to perform this operation'
+    );
+  }
+  next();
 };
 
 module.exports = {
